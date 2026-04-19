@@ -1,6 +1,6 @@
 
-import Employee from "../models/empModel";
-import Attendance from "../models/attendanceModel";
+import Employee from "../models/empModel.js";
+import Attendance from "../models/attendanceModel.js";
 
 
 
