@@ -19,6 +19,6 @@ const empSchema = new mongoose.Schema({
 
 }, {timestamps : true});
 
-const Employee = mongoose.model.Employee || mongoose.models("Employee", empSchema);
+const Employee = mongoose.models.Employee || mongoose.model("Employee", empSchema);
 
 export default Employee;
