@@ -38,7 +38,7 @@ const Attendence = () => {
   }, [fetchData])
 
   if(loading) return <Loading/>
-console.log(history);
+// console.log(history);
 
   const today = new Date();
   today.setHours(0,0,0,0);
