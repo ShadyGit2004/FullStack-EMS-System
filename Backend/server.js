@@ -28,9 +28,9 @@ app.use("/api/leave", leaveRouter);
 app.use("/api/dashboard", dashboardRouter);
 // app.use("/api/payslips", payslipRouter);
 
-app.use((req, res) => {
-    res.redirect("/api/dashboard/");
-  });
+// app.get('*', (req, res) => {
+//     res.redirect("/api/dashboard");
+// });
 
 connectDB();
 
