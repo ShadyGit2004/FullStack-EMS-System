@@ -28,6 +28,10 @@ app.use("/api/leave", leaveRouter);
 app.use("/api/dashboard", dashboardRouter);
 // app.use("/api/payslips", payslipRouter);
 
+app.get('*', (req, res) => {
+    res.redirect("/api/dashboard");
+});
+
 connectDB();
 
 app.listen(PORT, ()=>{
