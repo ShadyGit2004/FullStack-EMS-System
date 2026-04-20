@@ -4,21 +4,34 @@ import Loading from '../components/Loading'
 import { useCallback, useEffect, useState } from "react";
 import LeaveHistory from "../components/Leave/LeaveHistory";
 import ApplyLeaveModal from "../components/Leave/ApplyLeaveModal";
-
+import {useAuth} from "../context/authContext";
+import api from '../api/axios.js'
+import {toast} from 'react-hot-toast';
 
 const Leave = () => {
 
+  const {user} = useAuth();
   const [leaves, setLeaves] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
-  const isAdmin = false;
+  const isAdmin = user?.role === "ADMIN";
 
   const fetchLeaves = useCallback(async () => {
-    setLeaves(dummyLeaveData);
-    setTimeout(() => {
+    // setLeaves(dummyLeaveData);
+    // setTimeout(() => {
+    //   setLoading(false);
+    // }, 1000);
+
+    try {
+      const res = await api.get('leave');
+      setLeaves(res.data.data || []);
+      if(res.data.employee?.isDeleted) setIsDeleted(true);
+    } catch (e) {
+      toast.error(e?.response?.data?.error || e.message)
+    } finally{
       setLoading(false);
-    }, 1000);
+    }
   }, [])
 
   useEffect(()=>{

@@ -1,6 +1,9 @@
 import { Loader2, Save, User } from 'lucide-react';
 import React, { useState } from 'react'
 
+import api from '../api/axios.js'
+import {toast} from 'react-hot-toast';
+
 const ProfileForm = ({initalData, onSuccess}) => {
 
     const [loading, setLoading] = useState(false);
@@ -9,7 +12,20 @@ const ProfileForm = ({initalData, onSuccess}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    }
+        setLoading(true);
+        SetError("");
+        SetMessage("");
+        const formData = new FormData(e.currentTarget);
+        try {
+            await api.post("/profile", formData);
+            SetMessage("Profile updated successfully");
+            onSuccess?.(); 
+        } catch (e) {
+            toast.error(e?.response?.data?.error || e.message)
+        } finally {
+            setLoading(false);
+        }   
+    };
 
   return (
     <form className='card p-5 sm:p-6 mb-6' onSubmit={handleSubmit}>
@@ -28,9 +44,8 @@ const ProfileForm = ({initalData, onSuccess}) => {
 
         {message && (
             <div className='bg-emerald-50 text-emerald-700 p-4 rounded-xl text-sm border border-emerald-200 mb-6 flex items-start gap-3'>
-                <div className='w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0'>
+                <div className='w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0'/>
                     {message}
-                </div>
             </div>
         )}
         <div className='space-y-5'>

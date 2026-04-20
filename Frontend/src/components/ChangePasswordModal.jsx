@@ -1,13 +1,30 @@
 import { Loader2Icon, LockIcon, X } from 'lucide-react';
 import React, { useState } from 'react'
 
+import api from '../api/axios.js'
+
 const ChangePasswordModal = ({open, onClose}) => {
 
     const [loading, setLoading] = useState(false);
-    const [message, SetMessage] = useState({type:"", text:""});
+    const [message, setMessage] = useState({type:"", text:""});
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
+        setMessage({type : "", text : ""});
+        const formData = new FormData(e.currentTarget);
+        const currentPassword = formData.get("currentPassword");
+        const newPassword = formData.get("newPassword");
+        try {
+            const {data} = await api.post("/auth/change-password", {currentPassword, newPassword});
+            if(!data.success) throw new Error(data.error || "Failed");
+            setMessage({type : "success", text : "Password updated successfully"});
+            e.target.reset(); 
+        } catch (e) {
+            setMessage({type : "error", text : e.message});
+        } finally {
+            setLoading(false);
+        }   
     }
 
     if(!open) return null;
@@ -41,7 +58,7 @@ const ChangePasswordModal = ({open, onClose}) => {
                 </div>
                 <div className='flex gap-3 pt-2'>
                     <button onClick={onClose} type='button' className='btn-secondary flex-1'>Cancel</button>
-                    <button onClick={onClose} disabled={loading} type='submit' className='btn-primary flex-1 flex justify-center items-center gap-2'> 
+                    <button disabled={loading} type='submit' className='btn-primary flex-1 flex justify-center items-center gap-2'> 
                         {loading && <Loader2Icon className='w-4 h-4 animate-spin'/>} Update Password
                     </button>
                 </div>

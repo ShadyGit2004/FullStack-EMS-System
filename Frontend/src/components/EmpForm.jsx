@@ -2,14 +2,34 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { DEPARTMENTS } from '../assets/assets';
 import { Loader2Icon } from 'lucide-react';
+import api from '../api/axios.js'
+import {toast} from 'react-hot-toast';
 
 const EmpForm = ({initialData, onSuccess, onCancel}) => {
 
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const isEditMode = !!initialData;
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
+        const formData = new FormData(e.currentTarget);
+        if(isEditMode){
+            const pswd = formData.get("password");
+            if (!pswd) formData.delete("password");
+        };
+
+        try {
+            const url = isEditMode ? `/employees/${initialData.id}` : "/employees";
+            const method = isEditMode ? "put" : "post";
+            await api[method](url, formData);
+            onSuccess ? onSuccess() : navigate("/employees");
+        } catch (e) {
+            toast.error(e.response?.data?.error || e.message);
+        } finally {
+            setLoading(false);
+        }
     }
 
   return (
@@ -92,7 +112,7 @@ const EmpForm = ({initialData, onSuccess, onCancel}) => {
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-5 text-sm text-slate-700'>
                 <div className='sm:col-span-2'>
                     <label className='block mb-2'>Work Email</label>
-                    <input type='email' name='eamil' placeholder='eamil' required defaultValue={initialData?.email}/>
+                    <input type='email' name='email' placeholder='email' required defaultValue={initialData?.email}/>
                 </div>          
                 {!isEditMode && (
                     <div>

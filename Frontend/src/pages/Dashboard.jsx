@@ -3,6 +3,8 @@ import { dummyAdminDashboardData, dummyEmployeeDashboardData } from "../assets/a
 import Loading from "../components/Loading"
 import AdminDashboard from "../components/AdminDashboard"
 import EmpDashboard from "../components/EmpDashboard"
+import api from "../api/axios.js"
+import {toast} from "react-hot-toast"
 
 const Dashboard = () => {
 
@@ -10,10 +12,15 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(()=>{
-    setData(dummyEmployeeDashboardData)
-    setTimeout(() => {
-      setLoading(false)
-    }, 1000);
+
+    api.get("/dashboard").then((res)=> setData(res.data))
+    .catch((e)=> toast.error(e.response?.data?.error || e?.message || "Failed to Load"))
+    .finally(()=>setLoading(false));
+
+    // setData(dummyEmployeeDashboardData)
+    // setTimeout(() => {
+    //   setLoading(false)
+    // }, 1000);
   }, []);
 
   if(loading) return <Loading/>

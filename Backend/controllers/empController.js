@@ -10,7 +10,7 @@ export const getEmployees = async (req, res) => {
         const where = {}
         if(department) where.department = department;
 
-        const employees = (await Employee.find(where)).toSorted({createdAt: -1}).populate("userId", "email role").lean();
+        const employees = await Employee.find(where).sort({createdAt: -1}).populate("userId", "email role").lean();
         
         const result = employees.map((emp)=>({
             ...emp,
@@ -28,8 +28,8 @@ export const getEmployees = async (req, res) => {
 // Post / api/employees
 export const createEmployee = async (req, res) => {
     try {
-        const {firstName, lastName, email, phone, position,basicSalary, allowances, deductions, password, joinDate, bio, department} = req.body;
- 
+        const {firstName, lastName, email, phone, position, basicSalary, allowances, deductions, password, joinDate, bio, department, role} = req.body;
+        
         if(!email || !password || !firstName || !lastName){
             return res.status(400).json({error: "Missing required fields"});
         };
@@ -71,12 +71,12 @@ export const createEmployee = async (req, res) => {
 export const updateEmployee = async (req, res) => {
     try {
         const {id} = req.params;
-        const {firstName, lastName, email, phone, position,basicSalary, allowances, deductions, password, employmentStatus, bio, department} = req.body;
+        const {firstName, lastName, email, phone, position,basicSalary, allowances, deductions, password, employmentStatus, bio, department, role} = req.body;
  
         const employee = await Employee.findById(id);
         if(!employee) return res.status(400).json({error: "Employee not found"});
 
-        await Employee.findByIdAndUpadate(id, {
+        await Employee.findByIdAndUpdate(id, {
             firstName,
             lastName,
             email,
@@ -94,7 +94,7 @@ export const updateEmployee = async (req, res) => {
         const userUpdate = {email};
         if(role) userUpdate.role = role;
         if(password) userUpdate.password = await bcrypt.hash(password, 10);
-        await User.findByIdAndUpadate(employee.userId, userUpdate);
+        await User.findByIdAndUpdate(employee.userId, userUpdate);
 
         return res.json({success: true});
     } catch (e) {
