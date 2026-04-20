@@ -39,7 +39,7 @@ const Sidebar = () => {
 
     const handleLogout = ()=>{
         logout();
-        window.location.href = '/auth/login';
+        window.location.href = '/login';
     }
 
     const sidebarContent = (
