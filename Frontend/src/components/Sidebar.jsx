@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, Navigate } from 'react-router-dom'
 import {dummyProfileData} from '../assets/assets'
 import { CalendarIcon, ChevronRightIcon, DollarSignIcon, FileTextIcon, LayoutDashboardIcon, Loader2, LogOutIcon, MenuIcon, SettingsIcon, UserIcon, XIcon } from 'lucide-react';
 import { useAuth } from '../context/authContext';
@@ -39,7 +39,8 @@ const Sidebar = () => {
 
     const handleLogout = ()=>{
         logout();
-        window.location.href = '/login';
+        // window.location.href = '/login';
+        <Navigate to={"/login"}/>
     }
 
     const sidebarContent = (

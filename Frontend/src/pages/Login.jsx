@@ -56,7 +56,7 @@ const Login = () => {
 
           {/* footer */}
           <div className="mt-12 text-center md:text-left text-sm text-slate-400">
-            <p>&copy; {new Date().getFullYear()} RJT. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} RAJAT. All rights reserved.</p>
           </div>
       </div>
       
