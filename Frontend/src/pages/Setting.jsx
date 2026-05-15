@@ -6,7 +6,7 @@ import ProfileForm from "../components/ProfileForm";
 import ChangePasswordModal from "../components/ChangePasswordModal"; 
 
 import { useAuth } from "../context/authContext"
-import api from '../api/axios.js'
+import api from '../api/axios.js';
 import {toast} from 'react-hot-toast';
 
 const Setting = () => {
