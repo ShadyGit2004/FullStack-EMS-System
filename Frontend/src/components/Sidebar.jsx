@@ -22,7 +22,7 @@ const Sidebar = () => {
     // close mobile sidebar on route change
     useEffect(()=>{
         setMobileOpen(false)
-    },[pathname])
+    },[pathname]);
 
     // const role = "ADMIN" || "Employee";
     const role = user?.role;
