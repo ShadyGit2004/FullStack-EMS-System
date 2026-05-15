@@ -1,5 +1,5 @@
 import { Check, Loader2, X } from 'lucide-react';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import {format} from 'date-fns';
 import api from '../../api/axios.js'
 import {toast} from 'react-hot-toast';
