@@ -1,6 +1,6 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 
 //  login for emp and admin
 // post /api/auth/login
