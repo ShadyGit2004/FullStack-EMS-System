@@ -15,7 +15,7 @@ const empSchema = new mongoose.Schema({
     joinDate : {type: Date, required : true},        
     isDeleted : {type: Boolean, default: false},   
     bio : {type: String, default: ""},   
-    department: {type: String, enum: DEPARTMENTS}
+    department: {type: String, enum: DEPARTMENTS};
 
 }, {timestamps : true});
 
