@@ -9,7 +9,6 @@ import {toast} from 'react-hot-toast';
 
 const Employee = () => {
 
-
   const [employee, setEmployee] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
