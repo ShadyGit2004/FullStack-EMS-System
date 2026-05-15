@@ -1,6 +1,6 @@
 import { CalendarDays, FileText, Loader2, Send, X } from 'lucide-react';
 import React, { useState } from 'react';
-import api from '../../api/axios.js'
+import api from '../../api/axios.js';
 import {toast} from 'react-hot-toast';
 
 
