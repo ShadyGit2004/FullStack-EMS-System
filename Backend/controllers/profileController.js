@@ -20,7 +20,7 @@ export const getProfile = async (req, res) => {
         return res.json(employee);
     } catch (e) {
         return res.status(500).json({error : "Failed to fetch profile"});
-    }
+    };
 };
 
 
