@@ -31,5 +31,5 @@ const Dashboard = () => {
   }else return <EmpDashboard data={data}/>
 }
 
-export default Dashboard
+export default Dashboard;
 
