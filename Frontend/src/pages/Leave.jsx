@@ -36,7 +36,7 @@ const Leave = () => {
 
   useEffect(()=>{
     fetchLeaves();
-  }, [fetchLeaves])
+  }, [fetchLeaves]);
 
   if(loading) return <Loading/>
 
