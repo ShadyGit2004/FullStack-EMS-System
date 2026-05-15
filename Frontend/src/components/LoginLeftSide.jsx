@@ -13,4 +13,4 @@ const LoginLeftSide = () => {
   )
 }
 
-export default LoginLeftSide
+export default LoginLeftSide;
