@@ -43,8 +43,10 @@ const Attendence = () => {
 
   const today = new Date();
   today.setHours(0,0,0,0);
-  const todayRecord = history.find((r)=> new Date(r.date).toDateString()===today.toDateString());
-
+  //const todayRecord = history.find((r) => new Date(r.date).toDateString()===today.toDateString());
+  const todayRecord = history.find((r) => r?.date
+  && new Date(r.date).toDateString() === today.toDateString());
+  
   return (
     <div className="animate-fade-in">
       <div className="page-header">
