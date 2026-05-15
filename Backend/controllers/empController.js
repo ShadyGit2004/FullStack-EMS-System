@@ -100,7 +100,7 @@ export const updateEmployee = async (req, res) => {
     } catch (e) {
         if(e.code === 11000){
             return res.status(400).json({error: "Email already exists"});
-        }
+        };
         console.log("update Emp err -", e)
         return res.status(500).json({error: "Failed to update employee"})
     }
