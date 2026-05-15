@@ -5,7 +5,6 @@ import Employee from "../models/empModel.js";
 import LeaveApplication from "../models/leaveApplicationModel.js";
 
 
-
 // get dashboard for emp and admin
 // get /api/dashboard
 export const getDashboard = async (req, res) => {
