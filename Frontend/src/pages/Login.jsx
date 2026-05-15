@@ -18,7 +18,7 @@ const Login = () => {
       desc:"View your profile, track attendence, request time off.",
       icon: UserIcon
     },
-  ]
+  ];
 
   const {user, loading} = useAuth();
   
