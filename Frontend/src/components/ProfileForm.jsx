@@ -1,7 +1,7 @@
 import { Loader2, Save, User } from 'lucide-react';
 import React, { useState } from 'react'
 
-import api from '../api/axios.js'
+import api from '../api/axios.js';
 import {toast} from 'react-hot-toast';
 
 const ProfileForm = ({initalData, onSuccess}) => {
