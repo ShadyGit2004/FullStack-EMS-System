@@ -1,7 +1,7 @@
 import { Loader2Icon, LockIcon, X } from 'lucide-react';
 import React, { useState } from 'react'
 
-import api from '../api/axios.js'
+import api from '../api/axios.js';
 
 const ChangePasswordModal = ({open, onClose}) => {
 
