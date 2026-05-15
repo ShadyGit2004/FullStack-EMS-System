@@ -23,8 +23,8 @@ const Attendence = () => {
     try {
       const res = await api.get("/attendance");
       const json = res.data;
-      setHistory(Array.isArray(json.data) ? json.data : [json.data] || []);
-      //setHistory(json.data || []);
+      //setHistory(Array.isArray(json.data) ? json.data : [json.data] || []);
+      setHistory(json.data || []);
       if(json.employee?.isDeleted) setIsDeleted(true);
     } catch (e) {
       toast.error(e?.response?.data?.error || e.message)
@@ -41,11 +41,18 @@ const Attendence = () => {
   if(loading) return <Loading/>
 // console.log(history);
 
-  const today = new Date();
-  today.setHours(0,0,0,0);
+  //const today = new Date();
+  //today.setHours(0,0,0,0);
   //const todayRecord = history.find((r) => new Date(r.date).toDateString()===today.toDateString());
-  const todayRecord = history.find((r) => r?.date
-  && new Date(r.date).toDateString() === today.toDateString());
+  
+  const today = new Date().toISOString().split("T")[0];
+
+const todayRecord = history.find((r) => {
+  return new Date(r.date).toISOString().split("T")[0] === today;
+});
+  
+  //const todayRecord = history.find((r) => r?.date
+  //&& new Date(r.date).toDateString() === today.toDateString());
   
   return (
     <div className="animate-fade-in">
