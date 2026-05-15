@@ -9,7 +9,7 @@ const CheckInBtn = ({todayRecord, onAction}) => {
     const [loading, setLoading] = useState(false);
 
     const handleAttendance = async () => {
-        console.log("post called");
+        alert("post called");
         setLoading(true);
         // setTimeout(() => {
         //     setLoading(false);
