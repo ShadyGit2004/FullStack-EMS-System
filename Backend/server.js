@@ -3,8 +3,8 @@ import cors from "cors";
 import "dotenv/config";
 import multer  from "multer";
 
-import connectDB from "./config/db.js"
-import employeesRouter from "./routes/empRoutes.js"
+import connectDB from "./config/db.js";
+import employeesRouter from "./routes/empRoutes.js";
 import authRouter from "./routes/authRoutes.js";
 import profileRouter from "./routes/profileRoutes.js";
 import attendanceRouter from "./routes/attendanceRoutes.js";
