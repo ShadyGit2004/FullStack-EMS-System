@@ -54,7 +54,7 @@ const LoginForm = ({role, title, subtitle}) => {
       <form className='space-y-5' onSubmit={handleSubmit}>
         <div>
           <label className='block text-sm font-medium text-slate-700 mb-2'>Email address</label>
-          <input type="email" value={email} placeholder='abc@gamil.com' 
+          <input type="email" value={email} placeholder='admin@gmail.com' 
           onChange={(e)=>setEmail(e.target.value)}
           required/>
         </div>
